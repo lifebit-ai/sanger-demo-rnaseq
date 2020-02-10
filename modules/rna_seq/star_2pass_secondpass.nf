@@ -2,7 +2,7 @@ params.run = true
 
 process 'star_2pass_2nd_pass' {
     tag "2nd pass ${samplename}"
-    container "nfcore/rnaseq:1.4.2"
+    container "lifebitai/nfcore-rnaseq:latest"
     queue "long"
     time '2800m'
 

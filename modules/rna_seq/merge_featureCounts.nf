@@ -6,7 +6,7 @@ process merge_featureCounts {
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'
-    container "nfcore/rnaseq:1.4.2"
+    container "lifebitai/nfcore-rnaseq:latest"
     publishDir "${params.outdir}/combined", mode: 'symlink'
     containerOptions = "--bind /lustre"
     label 'merge_feature'

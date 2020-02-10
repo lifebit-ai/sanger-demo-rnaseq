@@ -2,7 +2,7 @@ params.run = true
 
 process 'leafcutter_clustering' {
     // cache 'deep'
-    container "leafcutter"
+    container "francois4/leafcutter:latest"
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'

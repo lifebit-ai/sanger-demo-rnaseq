@@ -4,10 +4,10 @@ params.min_reads = 500
 process crams_to_fastq_gz {
     tag "crams to fastq_gz ${samplename}"
 
-    //container 'nfcore/rnaseq:1.4.2' 
+    //container 'nfcore-rnaseq' 
     // has samtools Version: 1.9 (using htslib 1.9)
     
-    container "samtools-1.6" // has: samtools 1.6 Using htslib 1.6
+    container "lifebitai/samtools:latest" // has: samtools 1.6 Using htslib 1.6
     containerOptions = "--bind /lustre/scratch117/core/sciops_repository/cram_cache --bind /lustre/scratch118/core/sciops_repository/cram_cache"
     // errorStrategy 'terminate'
     errorStrategy 'retry'

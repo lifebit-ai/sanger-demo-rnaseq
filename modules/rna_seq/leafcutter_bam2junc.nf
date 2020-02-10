@@ -4,7 +4,7 @@ process 'leafcutter_bam2junc' {
     tag "${samplename}"
     queue "long"
     time '2800m'
-    container "leafcutter"
+    container "francois4/leafcutter:latest"
 
 
     errorStrategy = { task.attempt <= 4 ? 'retry' : 'ignore' }

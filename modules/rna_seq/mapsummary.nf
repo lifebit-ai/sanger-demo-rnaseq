@@ -2,7 +2,7 @@ params.mito_name = 'MT'
 
 process mapsummary {
     tag "${samplename}"
-    container "nfcore/rnaseq:1.4.2"
+    container "lifebitai/nfcore-rnaseq:latest"
     publishDir "${params.outdir}/mapsummary/", mode: 'symlink'
     containerOptions = "--bind /lustre"
     errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }

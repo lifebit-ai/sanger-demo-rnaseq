@@ -5,7 +5,7 @@ process multiqc {
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'
-    container "nfcore/rnaseq:1.4.2"
+    container "lifebitai/nfcore-rnaseq:latest"
     errorStrategy = { task.attempt <= 5 ? 'retry' : 'ignore' }
     cpus =   {  2 * 2 * Math.min(2, task.attempt) }
     memory = {  40.GB + 20.GB * (task.attempt-1) }

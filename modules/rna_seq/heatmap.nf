@@ -3,7 +3,7 @@ params.run = true
 process heatmap {
     tag "heatmap"
     memory = '30G'
-    container "singularity-rstudio-seurat-tximport"
+    container "lifebitai/rstudio-seurat-tximport:latest"
     containerOptions = "--bind /tmp --bind /lustre"
     time '400m'
     cpus 1

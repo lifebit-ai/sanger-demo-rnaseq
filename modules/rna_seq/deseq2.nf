@@ -4,7 +4,7 @@ params.ensembl_lib = "Ensembl 91 EnsDb"
 process deseq2 {
     tag "$deseq2_tsv"
     memory = '80G'
-    container "singularity-rstudio-seurat-tximport"
+    container "lifebitai/rstudio-seurat-tximport:latest"
     containerOptions = "--bind /tmp --bind /lustre"
     time '400m'
     cpus 1
