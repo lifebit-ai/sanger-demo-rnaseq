@@ -4,7 +4,7 @@ process 'leafcutter_bam2junc' {
     tag "${samplename}"
     queue "long"
     time '2800m'
-    container "francois4/leafcutter:latest"
+    container "lifebitai/leafcutter:latest"
 
 
     errorStrategy = { task.attempt <= 4 ? 'retry' : 'ignore' }
@@ -27,9 +27,9 @@ process 'leafcutter_bam2junc' {
   script:
 
   """
-  export PATH=/home/leafcutter/scripts:/home/leafcutter/clustering:\$PATH
+  export PATH=/leafcutter/scripts/:/leafcutter/clustering/:\$PATH
 
   echo Converting ${bamfile} to ${samplename}.junc
-  sh /home/leafcutter/scripts/bam2junc.sh ${bamfile} ${samplename}.junc
+  bam2junc.sh ${bamfile} ${samplename}.junc
   """
 }
