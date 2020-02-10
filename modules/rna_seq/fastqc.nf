@@ -4,7 +4,7 @@ process 'fastqc' {
     memory = '5G'
     cpus 2
     tag "fastqc ${samplename}"
-    container "nfcore-rnaseq"
+    container "nfcore/rnaseq:1.4.2"
     errorStrategy 'retry'
     maxRetries 3
     time '120m'

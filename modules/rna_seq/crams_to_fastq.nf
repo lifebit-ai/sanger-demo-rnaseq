@@ -4,7 +4,7 @@ params.min_reads = 500
 process crams_to_fastq_gz {
     tag "crams to fastq_gz ${samplename}"
 
-    //container 'nfcore-rnaseq' 
+    //container 'nfcore/rnaseq:1.4.2' 
     // has samtools Version: 1.9 (using htslib 1.9)
     
     container "samtools-1.6" // has: samtools 1.6 Using htslib 1.6

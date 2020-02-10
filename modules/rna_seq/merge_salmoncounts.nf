@@ -6,7 +6,7 @@ process merge_salmoncounts {
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'
-    container "nfcore-rnaseq"
+    container "nfcore/rnaseq:1.4.2"
     publishDir "${params.outdir}/combined", mode: 'symlink'
     errorStrategy { task.attempt <= 6 ? 'retry' : 'ignore' }
     containerOptions = "--bind /lustre"

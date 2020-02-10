@@ -4,7 +4,7 @@ params.min_pct_aln  = 5 // used to filter STAR alignements output if rate below 
 process filter_star_aln_rate {
     tag "filter_star_aln_rate ${samplename}"
 
-    //container 'nfcore-rnaseq' 
+    //container 'nfcore/rnaseq:1.4.2' 
     errorStrategy 'retry'
     maxRetries 3
     time '30m'

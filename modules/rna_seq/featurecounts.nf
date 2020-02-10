@@ -8,7 +8,7 @@ params.unstranded = false
 
 process featureCounts {
     tag "${samplename}"
-    container "nfcore-rnaseq"
+    container "nfcore/rnaseq:1.4.2"
     memory = '5G'
     time '300m'
     cpus 1
