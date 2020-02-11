@@ -40,6 +40,8 @@ process multiqc {
     def reporttitle = "${params.runtag}"
     """
     export PATH=/opt/conda/envs/nf-core-rnaseq-1.3/bin:\$PATH
+    export LC_ALL=C.UTF-8
+    export LANG=C.UTF-8
 
     multiqc . -f --title "$reporttitle" --filename "$filename" -m featureCounts -m star -m fastqc -m salmon
     """
