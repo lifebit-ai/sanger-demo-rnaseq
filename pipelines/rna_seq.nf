@@ -1,25 +1,5 @@
 nextflow.preview.dsl=2
 
-// list and dir location of input fastqs:
-// $baseDir is to set paths relative to the location of this main script rna_seq.nf
-params.lifebit_inputs_files = "$baseDir/../inputs/lifebit_input_files.tsv"
-params.input_fastqs_dir = "$baseDir/../../samples"
-
-// pipeline options:
-params.min_reads = 500   // used by crams_to_fastq_gz
-params.genome = 'GRCh38' // used by star aligner
-params.fcextra = ""      // used by featurecounts
-params.min_pct_aln  = 5 // used to filter STAR alignements, checking if align rate below threshold
-params.singleend = false       // used by featurecounts
-params.forward_stranded = false  // used by featurecounts
-params.reverse_stranded = true  // used by featurecounts
-params.unstranded = false  // used by featurecounts
-params.biotypes_header= "$baseDir/../assets/biotypes_header.txt" // used by featurecounts
-params.mito_name = 'MT' // used by mapsummary
-params.runtag = 'lifebit-demo' // HG_UKBB_scRNA_Pilot I&II 
-params.ensembl_lib = "Ensembl 91 EnsDb" // used by tximport, must match used genome version
-
-params.run_star = true
 def pick_aligner(String aligner) {
     return  aligner == 'star' || (!params.run_star && aligner == 'hisat2')
     ? true
@@ -39,12 +19,10 @@ Channel.fromPath(params.biotypes_header)
     .ifEmpty { exit 1, "biotypes header file not found: ${params.biotypes_header}" }
     .set { ch_biotypes_header }
 
-params.salmon_index = "$baseDir/../../genomes/salmon14_index/salmon"
 Channel.fromPath(params.salmon_index)
     .ifEmpty { exit 1, "Salmon index dir not found: ${params.salmon_index}" }
     .set {ch_salmon_index}
 
-params.salmon_trans_gene = "$baseDir/../../genomes/salmon14_index/trans_gene.txt"
 Channel.fromPath(params.salmon_trans_gene)
     .ifEmpty { exit 1, "Salmon trans gene file not found: ${params.salmon_trans_gene}" }
     .set {ch_salmon_trans_gene}

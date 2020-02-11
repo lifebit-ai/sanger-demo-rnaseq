@@ -3,8 +3,7 @@ params.run = true
 process heatmap {
     tag "heatmap"
     memory = '30G'
-    container "singularity-rstudio-seurat-tximport"
-    containerOptions = "--bind /tmp --bind /lustre"
+    container "lifebitai/rstudio-seurat-tximport:1.0"
     time '400m'
     cpus 1
     errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }
@@ -23,6 +22,6 @@ process heatmap {
 
     script:
     """
-    /usr/bin/Rscript $workflow.projectDir/../bin/rna_seq/heatmap.R $count_matrix_tsv
+    heatmap.R $count_matrix_tsv
     """
 }

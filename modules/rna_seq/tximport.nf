@@ -4,8 +4,7 @@ params.ensembl_lib = "Ensembl 91 EnsDb"
 process tximport {
     tag "tximport $params.ensembl_lib"
     memory = '80G'
-    container "singularity-rstudio-seurat-tximport"
-    containerOptions = "--bind /tmp --bind /lustre"
+    container "lifebitai/rstudio-seurat-tximport:1.0"
     time '400m'
     cpus 1
     errorStrategy { task.attempt <= 3 ? 'retry' : 'ignore' }
@@ -33,7 +32,7 @@ process tximport {
     """
     ls . | grep .quant.sf\$ > fofn_quantfiles.txt
 
-    /usr/bin/Rscript $workflow.projectDir/../bin/rna_seq/tximport.R \"$params.ensembl_lib\" fofn_quantfiles.txt 
+    tximport.R \"$params.ensembl_lib\" fofn_quantfiles.txt 
     """
 
     // TODO: prepare columns for merging; extract correct column and transpose (paste) it.

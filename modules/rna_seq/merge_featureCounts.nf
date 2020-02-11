@@ -6,9 +6,8 @@ process merge_featureCounts {
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'
-    container "nfcore-rnaseq"
+    container "lifebitai/nfcore-rnaseq:1.0"
     publishDir "${params.outdir}/combined", mode: 'symlink'
-    containerOptions = "--bind /lustre"
     label 'merge_feature'
     memory = '100G'
     cpus 2
@@ -36,7 +35,7 @@ process merge_featureCounts {
 
     ls . | grep gene.fc.txt\$ > fofn_gene_featurecount.txt
 
-    python3 !{workflow.projectDir}/../bin/rna_seq/merge_featurecounts.py        \\
+    merge_featurecounts.py        \\
       --rm-suffix !{thesuffix}                                       \\
       -c 1 --skip-comments --header                                  \\
       -o !{outputname} -I fofn_gene_featurecount.txt

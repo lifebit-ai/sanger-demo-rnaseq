@@ -2,7 +2,7 @@ params.run = true
 
 process samtools_index_idxstats {
     tag "${samplename}"
-    container "nfcore-rnaseq"
+    container "lifebitai/nfcore-rnaseq:latest"
     memory = '8G'
     cpus 1
     time '300m'

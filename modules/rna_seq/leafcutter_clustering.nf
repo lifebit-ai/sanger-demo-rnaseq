@@ -2,7 +2,7 @@ params.run = true
 
 process 'leafcutter_clustering' {
     // cache 'deep'
-    container "leafcutter"
+    container "lifebitai/leafcutter:latest"
     scratch '/tmp'
     stageInMode 'copy'
     stageOutMode 'rsync'
@@ -30,7 +30,7 @@ process 'leafcutter_clustering' {
 
     script:
   """
-  export PATH=/home/leafcutter/scripts:/home/leafcutter/clustering:\$PATH
+  export PATH=/leafcutter/scripts/:/leafcutter/clustering/:\$PATH
 
   ls . | grep .junc\$ > fofn_junctions_files.txt
   leafcutter_cluster.py -j fofn_junctions_files.txt -m 50 -o clust -l 500000

@@ -2,7 +2,7 @@ params.run = true
 
 process 'star_2pass_1st_pass' {
     tag "1st pass ${samplename}"
-    container "nfcore-rnaseq"
+    container "lifebitai/nfcore-rnaseq:latest"
     time '600m'
 
     errorStrategy = { task.attempt <= 2 ? 'retry' : 'ignore' }
