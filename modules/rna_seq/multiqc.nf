@@ -15,11 +15,6 @@ process multiqc {
     time '900m'
 
     publishDir "${params.outdir}", mode: 'copy',
-      saveAs: {filename ->
-          if (filename.indexOf("multiqc.html") > 0) "combined/$filename"
-          else if (filename.indexOf("_data") > 0) "$filename"
-          else null
-      }
 
     when:
     params.run
@@ -32,18 +27,17 @@ process multiqc {
     file ('salmon/*') //from ch_alignment_logs_salmon.collect().ifEmpty([])
 
     output:
-    file "*_multiqc.html"
+    file "*multiqc_report.html"
     file "*_data"
 
     script:
-    def filename = "${params.runtag}_multiqc.html"
     def reporttitle = "${params.runtag}"
     """
     export PATH=/opt/conda/envs/nf-core-rnaseq-1.3/bin:\$PATH
     export LC_ALL=C.UTF-8
     export LANG=C.UTF-8
 
-    multiqc . -f --title "$reporttitle" --filename "$filename" -m featureCounts -m star -m fastqc -m salmon
+    multiqc . -f --title "$reporttitle" -m featureCounts -m star -m fastqc -m salmon
     """
 }
 // multiqc . -f --title "$reporttitle" --filename "$filename" -m custom_content -m featureCounts -m star -m fastqc -m salmon
