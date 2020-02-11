@@ -37,7 +37,7 @@ process multiqc {
     export LC_ALL=C.UTF-8
     export LANG=C.UTF-8
 
-    multiqc . -f --title "$reporttitle" -m featureCounts -m star -m fastqc -m salmon
+    multiqc . -f --filename multiqc_report.html --title "$reporttitle" -m featureCounts -m star -m fastqc -m salmon
     """
 }
 // multiqc . -f --title "$reporttitle" --filename "$filename" -m custom_content -m featureCounts -m star -m fastqc -m salmon
