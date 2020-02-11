@@ -13,8 +13,8 @@ nextflow run pipelines/rna_seq.nf \
 
 # Cloud (remote files)
 nextflow run https://github.com/lifebit-ai/sanger-demo-rnaseq \
---lifebit_inputs_files s3://lifebit-demo/sanger/demo-data/inputs/lifebit_input_files.tsv \
---input_fastqs_dir s3://lifebit-demo/sanger/demo-data/samples \
---genomes_base s3://lifebit-demo/sanger/demo-data/genomes \
+--lifebit_inputs_files s3://lifebit-demo/sanger/inputs/lifebit_input_files.tsv \
+--input_fastqs_dir s3://lifebit-demo/sanger/samples \
+--genomes_base s3://lifebit-demo/sanger/genomes \
 --max_memory 122.GB
 ```
