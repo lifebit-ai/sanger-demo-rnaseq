@@ -28,32 +28,32 @@ Channel.fromPath(params.salmon_trans_gene)
     .set {ch_salmon_trans_gene}
 
 
-include fastqc from '../modules/rna_seq/fastqc.nf' params(run: true, outdir: params.outdir)
+include fastqc from './modules/rna_seq/fastqc.nf' params(run: true, outdir: params.outdir)
 
-include salmon from '../modules/rna_seq/salmon.nf' params(run: true, outdir: params.outdir)
-include merge_salmoncounts from '../modules/rna_seq/merge_salmoncounts.nf' params(run: true, outdir: params.outdir,
+include salmon from './modules/rna_seq/salmon.nf' params(run: true, outdir: params.outdir)
+include merge_salmoncounts from './modules/rna_seq/merge_salmoncounts.nf' params(run: true, outdir: params.outdir,
 						   runtag : params.runtag)
-include tximport from '../modules/rna_seq/tximport.nf' params(run: true, outdir: params.outdir,
+include tximport from './modules/rna_seq/tximport.nf' params(run: true, outdir: params.outdir,
 						 ensembl_lib: params.ensembl_lib)
 
-include star_2pass_basic from '../modules/rna_seq/star_2pass_basicmode.nf' params(run: true, outdir: params.outdir)
+include star_2pass_basic from './modules/rna_seq/star_2pass_basicmode.nf' params(run: true, outdir: params.outdir)
 
-include filter_star_aln_rate from '../modules/rna_seq/filter_star_aln_rate.nf' params(run: true,
+include filter_star_aln_rate from './modules/rna_seq/filter_star_aln_rate.nf' params(run: true,
 									     min_pct_aln: params.min_pct_aln)
-include leafcutter_bam2junc from '../modules/rna_seq/leafcutter_bam2junc.nf' params(run: true, outdir: params.outdir)
-include leafcutter_clustering from '../modules/rna_seq/leafcutter_clustering.nf' params(run: true, outdir: params.outdir)
-include featureCounts from '../modules/rna_seq/featurecounts.nf' params(run: true,outdir: params.outdir,
+include leafcutter_bam2junc from './modules/rna_seq/leafcutter_bam2junc.nf' params(run: true, outdir: params.outdir)
+include leafcutter_clustering from './modules/rna_seq/leafcutter_clustering.nf' params(run: true, outdir: params.outdir)
+include featureCounts from './modules/rna_seq/featurecounts.nf' params(run: true,outdir: params.outdir,
 							       fcextra: params.fcextra,
 							       singleend: params.singleend, 
 							       forward_stranded: params.forward_stranded,
 							       reverse_stranded: params.reverse_stranded,
 							       unstranded: params.unstranded)
-include samtools_index_idxstats from '../modules/rna_seq/samtools_index_idxstats.nf' params(run: true, outdir: params.outdir)
-include merge_featureCounts from '../modules/rna_seq/merge_featureCounts.nf' params(run: true, outdir: params.outdir,
+include samtools_index_idxstats from './modules/rna_seq/samtools_index_idxstats.nf' params(run: true, outdir: params.outdir)
+include merge_featureCounts from './modules/rna_seq/merge_featureCounts.nf' params(run: true, outdir: params.outdir,
 									   runtag : params.runtag)
-include multiqc from '../modules/rna_seq/multiqc.nf' params(run: true, outdir: params.outdir,
+include multiqc from './modules/rna_seq/multiqc.nf' params(run: true, outdir: params.outdir,
 						   runtag : params.runtag)
-include heatmap from '../modules/rna_seq/heatmap.nf' params(run: true, outdir: params.outdir,
+include heatmap from './modules/rna_seq/heatmap.nf' params(run: true, outdir: params.outdir,
 						   runtag : params.runtag)
 
 workflow {
