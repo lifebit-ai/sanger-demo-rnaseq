@@ -14,7 +14,7 @@ process multiqc {
     queue 'long'
     time '900m'
 
-    publishDir "${params.outdir}", mode: 'copy',
+    publishDir "${params.outdir}/MultiQC", mode: 'copy',
 
     when:
     params.run
