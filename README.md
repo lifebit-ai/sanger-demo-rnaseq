@@ -2,6 +2,7 @@
 RNAseq pipeline
 
 ## Example usage
+### Command line
 ```bash
 # HPC (local files)
 nextflow run pipelines/rna_seq.nf \
@@ -18,3 +19,6 @@ nextflow run https://github.com/lifebit-ai/sanger-demo-rnaseq \
 --genomes_base s3://lifebit-demo/sanger/genomes \
 --max_memory 122.GB
 ```
+
+### CloudOS
+![cloudos_params](https://raw.githubusercontent.com/lifebit-ai/images/master/sanger/input_params.png)
